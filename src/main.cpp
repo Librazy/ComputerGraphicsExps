@@ -46,6 +46,27 @@ void SampleKeyboard( unsigned char cChar, int nMouseX, int nMouseY )
         }
         break;
 
+	case 'r':
+	case 'R':
+			cR = 1.0f;
+			cG = 0;
+			cB = 0;
+		break;
+
+	case 'g':
+	case 'G':
+		cR = 0;
+		cG = 1.0f;
+		cB = 0;
+		break;
+
+	case 'b':
+	case 'B':
+		cR = 0;
+		cG = 0;
+		cB = 1.0f;
+		break;
+
     case 'f':
     case 'F':
         glutFullScreenToggle();

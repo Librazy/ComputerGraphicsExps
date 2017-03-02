@@ -1,15 +1,22 @@
 cmake_minimum_required(VERSION 3.0)
 project(ComputerGraphicsExps)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}")
 
 if(MSVC)
-  if((NOT DEFINED GLUT_ROOT_PATH) OR (GLUT_ROOT_PATH EQUAL "GLUT_ROOT_PATH-NOTFOUND") OR (GLUT_ROOT_PATH EQUAL "GLUT_ROOT_PATH_NOT_FOUND"))
+  if(NOT DEFINED GLUT_ROOT_PATH)
+    set(GLUT_ROOT_PATH "./freeglut" CACHE PATH "Path to GLUT library.")
+  endif()
+endif()
+
+find_package(FreeGLUT REQUIRED)
+find_package(OpenGL REQUIRED)
+
+if(NOT GLUT_FOUND)
+  if((NOT DEFINED GLUT_ROOT_PATH) OR (GLUT_ROOT_PATH EQUAL "GLUT_ROOT_PATH-NOTFOUND") OR (GLUT_ROOT_PATH EQUAL "./freeglut"))
     set(GLUT_ROOT_PATH "GLUT_ROOT_PATH-NOTFOUND" CACHE PATH "Path to GLUT library.")
     message(FATAL_ERROR "Path to GLUT library not set.")
   endif()
 endif()
-
-find_package(GLUT REQUIRED)
-find_package(OpenGL REQUIRED)
 
 if(MSVC)
   link_directories(
