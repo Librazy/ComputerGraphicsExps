@@ -114,13 +114,9 @@ void Redisplay()
 
 int main(int argc, char* argv[])
 {
-    int border, caption;
     glutInit( &argc, argv );
     glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE );
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-    
-    border  = glutGet(GLUT_WINDOW_BORDER_WIDTH);
-    caption = glutGet(GLUT_WINDOW_HEADER_HEIGHT);
 
     glutInitWindowPosition(150,250);
     glutInitWindowSize(200,200);
