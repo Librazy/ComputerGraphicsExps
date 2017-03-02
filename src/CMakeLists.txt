@@ -2,18 +2,20 @@ macro (add_exp _name )
   unset(SRC_LIST)
   aux_source_directory(./${_name} SRC_LIST)
   add_executable(${PROJECT_NAME}_${_name} ${SRC_LIST})
-  
+  message(WARNING ${GLEW_LIBRARY})
   target_link_libraries(
       ${PROJECT_NAME}_${_name} 
       ${OPENGL_gl_LIBRARY}
       ${OPENGL_glu_LIBRARY}
-      ${libglew_static}
-      freeglut_static )
+      ${GLEW_LIBRARY}
+      ${GLUT_LIBRARIES}
+      ${GLTOOLS_LIBRARY}  )
   
   target_include_directories(
       ${PROJECT_NAME}_${_name} PUBLIC
-      ${GLUT_INCLUDE_DIR}
-      ${GLEW_INCLUDE_DIR} )
+      ${FREEGLUT_INCLUDE_DIR}
+      ${GLEW_INCLUDE_DIR}
+	  ${GLTOOLS_INCLUDE_DIR} )
 
 endmacro()
 
@@ -32,3 +34,4 @@ unset(glew-cmake_BUILD_MULTI_CONTEXT CACHE)
 unset(glew-cmake_BUILD_SHARED CACHE)
 unset(glew-cmake_BUILD_SINGLE_CONTEXT CACHE)
 unset(glew-cmake_BUILD_STATIC CACHE)
+unset(ONLY_LIBS CACHE)
