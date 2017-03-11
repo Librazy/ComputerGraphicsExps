@@ -12,6 +12,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/glew-cmake)
 
 set(FREEGLUT_BUILD_SHARED_LIBS false CACHE BOOL "")
 set(FREEGLUT_BUILD_DEMOS false CACHE BOOL "")
+set(FREEGLUT_GLES false CACHE BOOL "")
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/FreeGLUT/freeglut/freeglut)
 
@@ -19,8 +20,7 @@ set(GLUT_LIBRARIES freeglut_static)
 set(GLEW_LIBRARY libglew_static)
 set(GLEWMX_LIBRARY  libglewmx_static)
 set(FREEGLUT_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/FreeGLUT/freeglut/freeglut/include)
-set(GLEW_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/glew-cmake/include)
-
+set(GLEW_INCLUDE_DIR $<TARGET_PROPERTY:libglew_static,INTERFACE_INCLUDE_DIRECTORIES>)
 add_subdirectory(${CMAKE_SOURCE_DIR}/GLTools)
 
 set(GLTOOLS_LIBRARY gltools)
