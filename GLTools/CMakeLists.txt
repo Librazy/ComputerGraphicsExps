@@ -39,7 +39,7 @@ set ( GLTOOLS_SRCS
 	"${CMAKE_CURRENT_SOURCE_DIR}/src/math3d.cpp"
 )
 
-add_library ( gltools ${GLTOOLS_SRCS})	
+add_library ( gltools ${GLTOOLS_SRCS})
 
 target_include_directories(
       gltools PUBLIC

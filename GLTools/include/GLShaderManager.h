@@ -60,7 +60,7 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF S
 // Linux
 #ifdef linux
 #define GLEW_STATIC
-#include <glew.h>
+#include <GL/glew.h>
 #endif
 
 //#include <vector>

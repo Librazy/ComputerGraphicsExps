@@ -128,7 +128,7 @@ void Redisplay()
 	shaderManager.UseStockShader(GLT_SHADER_IDENTITY, color);
 	tri.Draw();
 	shaderManager.UseStockShader(GLT_SHADER_IDENTITY, color2);
-	glutBitmapString(GLUT_BITMAP_9_BY_15, reinterpret_cast<unsigned char*>("press f/h/c"));
+	glutBitmapString(GLUT_BITMAP_9_BY_15, reinterpret_cast<const unsigned char*>("press f/h/c"));
 
 	glutSwapBuffers();
 	glutPostWindowRedisplay(win);
@@ -147,7 +147,7 @@ int WinMain(HINSTANCE hInstance,
 	int       nCmdShow)
 #endif // !DEBUG
 
-#elif
+#else
 int main(int argc, char* argv[])
 #endif// _MSC_VER
 {
