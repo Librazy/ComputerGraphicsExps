@@ -2,7 +2,6 @@ macro (add_exp _name )
   unset(SRC_LIST)
   aux_source_directory(./${_name} SRC_LIST)
   add_executable(${PROJECT_NAME}_${_name} ${SRC_LIST})
-  message(WARNING ${GLEW_LIBRARY})
   target_link_libraries(
       ${PROJECT_NAME}_${_name} 
       ${OPENGL_gl_LIBRARY}
@@ -15,7 +14,7 @@ macro (add_exp _name )
       ${PROJECT_NAME}_${_name} PUBLIC
       ${FREEGLUT_INCLUDE_DIR}
       ${GLEW_INCLUDE_DIR}
-	  ${GLTOOLS_INCLUDE_DIR} )
+      ${GLTOOLS_INCLUDE_DIR} )
 
 endmacro()
 

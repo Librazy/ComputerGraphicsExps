@@ -26,6 +26,7 @@ void SampleSpecial(int c, int mx, int my) {
 	case GLUT_KEY_RIGHT:
 		x += 0.01;
 		break;
+	default: break;
 	}
 }
 void SampleKeyboard(unsigned char cChar, int nMouseX, int nMouseY)
@@ -126,7 +127,7 @@ void Redisplay()
 	shaderManager.UseStockShader(GLT_SHADER_IDENTITY, color);
 	tri.Draw();
 	shaderManager.UseStockShader(GLT_SHADER_IDENTITY, color2);
-	glutBitmapString(GLUT_BITMAP_9_BY_15, (unsigned char*)"press f/h/c");
+	glutBitmapString(GLUT_BITMAP_9_BY_15, reinterpret_cast<unsigned char*>("press f/h/c"));
 
 	glutSwapBuffers();
 	glutPostWindowRedisplay(win);
@@ -139,12 +140,12 @@ int main(int argc, char* argv[])
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
-	nWindow = glutCreateWindow("homework 1");
+	nWindow = glutCreateWindow("homework 2");
 	glutSetIconTitle("homework 1");
 
 	GLenum err = glewInit();
 	if (err != GLEW_OK) {
-		fprintf(stderr, "GLEW error : %s \n", glewGetErrorString(err));
+		fprintf(stderr, "GLEW error : %s \n", reinterpret_cast<const char*>(glewGetErrorString(err)));
 		return 1;
 	}
 	shaderManager.InitializeStockShaders();
