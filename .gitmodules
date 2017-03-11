@@ -4,6 +4,3 @@
 [submodule "FreeGLUT"]
 	path = FreeGLUT
 	url = https://github.com/dcnieho/FreeGLUT.git
-[submodule "GLTools"]
-	path = GLTools
-	url = https://github.com/HazimGazov/GLTools.git
