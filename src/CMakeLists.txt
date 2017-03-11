@@ -14,7 +14,14 @@ macro (add_exp _name )
       ${PROJECT_NAME}_${_name} PUBLIC
       ${FREEGLUT_INCLUDE_DIR}
       ${GLEW_INCLUDE_DIR}
-	  ${GLTOOLS_INCLUDE_DIR} )
+      ${GLTOOLS_INCLUDE_DIR} )
+  
+  if(WIN32)
+     set_target_properties(${PROJECT_NAME}_${_name}  PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE")
+     set_target_properties(${PROJECT_NAME}_${_name}  PROPERTIES LINK_FLAGS_RELWITHDEBINFO "/SUBSYSTEM:CONSOLE")
+     set_target_properties(${PROJECT_NAME}_${_name}  PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:windows")
+     set_target_properties(${PROJECT_NAME}_${_name}  PROPERTIES LINK_FLAGS_MINSIZEREL "/SUBSYSTEM:windows")
+  endif(WIN32)
 
 endmacro()
 
@@ -33,4 +40,5 @@ unset(glew-cmake_BUILD_MULTI_CONTEXT CACHE)
 unset(glew-cmake_BUILD_SHARED CACHE)
 unset(glew-cmake_BUILD_SINGLE_CONTEXT CACHE)
 unset(glew-cmake_BUILD_STATIC CACHE)
-unset(ONLY_LIBS CACHE)
+unset(ONLY_LIBS CACHE) 
+unset(INSTALL_PDB CACHE) 
