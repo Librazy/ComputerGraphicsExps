@@ -15,6 +15,13 @@ macro (add_exp _name )
       ${FREEGLUT_INCLUDE_DIR}
       ${GLEW_INCLUDE_DIR}
       ${GLTOOLS_INCLUDE_DIR} )
+  
+  if(WIN32)
+     set_target_properties(${PROJECT_NAME}_${_name}  PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE")
+     set_target_properties(${PROJECT_NAME}_${_name}  PROPERTIES LINK_FLAGS_RELWITHDEBINFO "/SUBSYSTEM:CONSOLE")
+     set_target_properties(${PROJECT_NAME}_${_name}  PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:windows")
+     set_target_properties(${PROJECT_NAME}_${_name}  PROPERTIES LINK_FLAGS_MINSIZEREL "/SUBSYSTEM:windows")
+  endif(WIN32)
 
 endmacro()
 
