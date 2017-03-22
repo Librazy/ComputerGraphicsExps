@@ -155,8 +155,8 @@ int main(int argc, char* argv[])
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 
-	nWindow = glutCreateWindow("homework 2");
-	glutSetIconTitle("homework 2");
+	nWindow = glutCreateWindow("homework 3");
+	glutSetIconTitle("homework 3");
 
 	GLenum err = glewInit();
 	if (err != GLEW_OK) {
