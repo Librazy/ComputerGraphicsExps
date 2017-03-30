@@ -93,7 +93,21 @@ void Redisplay()
 }
 
 
+#ifdef _MSC_VER
+#ifdef _DEBUG
 int main(int argc, char* argv[])
+#else
+#define argc __argc
+#define argv __argv
+int WinMain(HINSTANCE hInstance,
+	HINSTANCE hPrevInstance,
+	LPTSTR    lpCmdLine,
+	int       nCmdShow)
+#endif // !DEBUG
+
+#else
+int main(int argc, char* argv[])
+#endif// _MSC_VER
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
