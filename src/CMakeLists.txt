@@ -29,6 +29,7 @@ add_exp(exp1)
 add_exp(exp2)
 add_exp(exp3)
 add_exp(exp4)
+add_exp(exp5)
 
 unset(FREEGLUT_BUILD_DEMOS CACHE)
 unset(FREEGLUT_BUILD_SHARED_LIBS CACHE)
