@@ -38,7 +38,7 @@ enum class DisplayObject
 };
 
 DisplayObject curObj = DisplayObject::SPHERE;
-GLT_STOCK_SHADER curShader = GLT_SHADER_POINT_LIGHT_DIFF;
+GLT_STOCK_SHADER curShader = GLT_SHADER_DEFAULT_LIGHT;
 
 GLenum fillMode = GL_FILL;
 
@@ -143,24 +143,22 @@ void SampleKeyboard(unsigned char cChar, int, int)
 void Reshape(int width, int height)
 {
 	glViewport(0, 0, width, height);
-	glMatrixMode(GL_PROJECTION);
-	gluOrtho2D(0, width, 0, height);
 
 	viewFrustum.SetPerspective(35.0f, width / static_cast<float>(height), 1.0f, 500.0f);
 	projectionStack.LoadMatrix(viewFrustum.GetProjectionMatrix());
 	modelStack.LoadIdentity();
-	
+
+	glMatrixMode(GL_PROJECTION);
+	gluOrtho2D(0, width, 0, height);
 	glutSetWindow(nWindow);
 }
 
 void Redisplay()
 {
 	auto win = glutGetWindow();
-	int viewport[4];
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(1, 1, 1, 0.0f);
-	glGetIntegerv(GL_VIEWPORT, viewport);
-	glRasterPos2i(2, -glutBitmapHeight(GLUT_BITMAP_9_BY_15) + 3 + viewport[3]);
+	glClearDepth(1.0f);
 	GLfloat color1[]{1.0f, 0.5f, 0.0f};
 	GLfloat color2[]{0.0f, 0.5f, 1.0f};
 	GLfloat color3[]{1.0f, 0.0f, 1.0f};
@@ -217,6 +215,9 @@ void Redisplay()
 		<< curCamera[1] << ", " << curCamera[5] << ", " << curCamera[9] << ", " << curCamera[13] << ";\n"
 		<< curCamera[2] << ", " << curCamera[6] << ", " << curCamera[10] << ", " << curCamera[14] << ";\n"
 		<< curCamera[3] << ", " << curCamera[7] << ", " << curCamera[11] << ", " << curCamera[15] << ";" << std::endl;
+	int viewport[4];
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	glRasterPos2i(2, -glutBitmapHeight(GLUT_BITMAP_9_BY_15) + 3 + viewport[3]);
 	glutBitmapString(GLUT_BITMAP_9_BY_15, reinterpret_cast<const unsigned char*>(camPos.str().c_str()));
 	modelStack.PopMatrix();
 
@@ -243,7 +244,6 @@ int main(int argc, char* argv[])
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-
 	nWindow = glutCreateWindow("homework 4");
 	glutSetIconTitle("homework 4");
 
@@ -252,6 +252,7 @@ int main(int argc, char* argv[])
 		fprintf(stderr, "GLEW error : %s \n", reinterpret_cast<const char*>(glewGetErrorString(err)));
 		return 1;
 	}
+	glEnable(GL_DEPTH_TEST);
 	shaderManager.InitializeStockShaders();
 
 	transformPipeline.SetMatrixStacks(modelStack, projectionStack);
